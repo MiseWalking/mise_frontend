@@ -1,0 +1,123 @@
+:root{
+    --text-color: white;
+    --background-color: #156900;
+    --accent-color:#156900;
+    display: block;
+    font-family: "inter";
+}
+
+li{
+        font-family: "Jalnan";
+
+}
+body {
+    margin: 0px;
+    font-family: 'inter';
+}
+
+a {
+    text-decoration: none;
+    color: white;
+}
+
+.navbar {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    background:#156900;
+}
+
+@font-face {
+    font-family: "Jalnan";
+    src: url("../../assets/fonts/Jalnan.ttf");
+
+}
+
+.navbar__logo {
+    margin-left: 3%;
+    font-family: "Jalnan";
+    font-size: 17px;
+    color: white;
+}
+.navbar__logo:hover {
+    background-color: #156900;
+}
+
+.navbar__logo i {
+    color: #156900;
+}
+
+.navbar__menu {
+    font-family: "Jalnan";
+    display: flex;
+    list-style: none;
+    padding-left: 0px;
+}
+
+.navbar__menu li {
+    font-family: "Jalnan";
+    border-radius: 50px;
+    /* background-color: #F1D064; */
+    font-size: 17px;
+    font-weight: 750;
+    color: white;
+}
+
+.navbar__menu :hover {
+    background: #156900;
+    border-radius: 50px;
+}
+
+.navbar__icons {
+    list-style: none;
+    color: white;
+    display: flex;
+    padding-left: 0px;
+    font-family: "Jalnan";
+}
+
+.navbar__icons li {
+    /* padding: 8px 12px; */
+    font-family: "Jalnan";
+    border-radius: 50px;
+    background-color: #156900;
+    font-size: 17px;
+    font-weight: 750;
+    color: white;
+    margin-right: 10px;
+}
+
+@media screen and (max-width: 768px) {
+    .navbar {
+        flex-direction: column;
+        align-items: flex-start;
+        padding: 8px 24px;
+    }
+    
+    .navbar__menu {
+        display: none;
+        flex-direction: column;
+        align-items: center;
+        width: 100%;
+    }
+
+    .navbar__menu li {
+        width: 100%;
+        text-align: center;
+    }
+
+    .navbar__icons {
+        display: none;
+        justify-content: center;
+        width: 100%;
+    }
+
+    .navbar__toogleBtn {
+        display: block;
+    }
+
+    .navbar__menu.active,
+    .navbar__icons.active {
+        display: flex;
+    }
+}
