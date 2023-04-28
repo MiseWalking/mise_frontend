@@ -6,17 +6,13 @@ function Navigator() {
       <nav class="navbar">
         <div class="navbar__logo">
           <i class="fab fa-accusoft"></i>
-          <a href="/">
+          <a href="/main">
             <strong>Mewal</strong>
           </a>
         </div>
 
         <ul class="navbar__menu">
-          <li>
-            {/* <button className="nav_button" onClick={() => {}}>
-              소원 빌러 가기
-            </button> */}
-          </li>
+          <li></li>
         </ul>
 
         <ul class="navbar__icons">

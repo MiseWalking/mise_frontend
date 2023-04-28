@@ -1,0 +1,92 @@
+@font-face {
+    font-family: "inter";
+    src: url("../../assets/fonts/Inter-SemiBold.ttf");
+}
+
+.content-wrapper{
+width: 100%;
+}
+.left-content{
+width: 50%;
+float: left;
+display: flex;
+flex-direction: column;
+align-items: center;
+justify-content: center;
+}
+.right-content{
+width: 50%;
+float: right;
+margin-top: 30px;
+display: flex;
+flex-direction: column;
+align-items: center;
+justify-content: center;
+}
+
+.work-image img{
+    margin-left: 150px;
+    /* margin-top: 150px; */
+    width: 60%;
+}
+.r-user-location{
+    font-size: 40px;
+    font-family: "inter";
+    font-weight: 800;
+    position: absolute;
+    top:90px
+}
+.r-content_text{
+    font-size: 20px;
+    font-family: "inter";
+    font-weight: 500;
+}
+.r-sub_content_text{
+    font-size: 15px;
+    font-family: "inter";
+    color: #7B7B7B;
+}
+
+.info-box_grey{
+    background-color: #DFDFDF;
+    width: 500px;
+    padding: 20px;
+    border-radius: 10px;
+}
+.info-box{
+    margin-top: 30px;
+    width: 70%;
+}
+.info-box-right{
+    border-radius: 10px;
+    padding: 10px;
+    box-shadow: 5px 5px 5px 5px #DFDFDF;
+    height: 100px;
+    width: 40%;
+    float: right;
+}
+.info-box-left{
+    border-radius: 10px;
+    padding: 10px;
+    box-shadow: 5px 5px 5px 5px #DFDFDF;
+    height: 100px;
+    width: 40%;
+    float: left;
+}
+
+.info-box-right-l{
+    border-radius: 10px;
+    padding: 10px;
+    box-shadow: 5px 5px 5px 5px #DFDFDF;
+    height: 100px;
+    width: 40%;
+    float: right;
+}
+.info-box-left-l{
+    border-radius: 10px;
+    padding: 10px;
+    box-shadow: 5px 5px 5px 5px #DFDFDF;
+    height: 100px;
+    width: 40%;
+    float: left;
+}

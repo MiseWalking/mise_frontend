@@ -29,8 +29,8 @@ function MainPage() {
               />
             </div>
             <div>
-              <button className="input__button" onClick={() => {}}>
-                미세먼지 피해 산책로 찾기
+              <button className="input__button">
+                <a href="/route">미세먼지 피해 산책로 찾기</a>
               </button>
             </div>
           </form>
