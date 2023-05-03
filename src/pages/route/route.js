@@ -13,8 +13,10 @@ function RoutePage() {
           <div className="r-sub_content_text">
             오늘의 서울 평균 미세먼지 농도 00.00%
           </div>
-          <div className="work-image">
-            <img src={runningImage} alt="runningImage" />
+          <div className="routes">
+            <div className="route-block">지도 들어갈 자리</div>
+            <div className="route-block">지도 들어갈 자리</div>
+            <div className="route-block">지도 들어갈 자리</div>
           </div>
         </div>
         {/* ******************** */}
@@ -25,11 +27,10 @@ function RoutePage() {
             ~산책로를 통해서 30분 러닝을추천해요!
           </div>
           <div className="info-box">
-            <div className="info-box-left">날씨</div>
-            <div className="info-box-right">지도</div>
+            <div className="info-box-center">날씨</div>
           </div>
           <div className="info-box">
-            <div className="info-box-left-l">일몰/일출</div>
+            <div className="info-box-left-l">강수량 습도</div>
             <div className="info-box-right-l">미세먼지</div>
           </div>
         </div>

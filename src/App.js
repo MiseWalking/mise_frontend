@@ -6,6 +6,7 @@ const App = () => {
   return (
     <Router>
       <Routes>
+        <Route path="/" element={<Main />} />
         <Route path="/main" element={<Main />} />
         <Route path="/route" element={<Mise />} />
       </Routes>

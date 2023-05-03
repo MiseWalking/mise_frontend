@@ -24,27 +24,44 @@ align-items: center;
 justify-content: center;
 }
 
-.work-image img{
-    margin-left: 150px;
-    /* margin-top: 150px; */
-    width: 60%;
+.routes{
+    width: 40%;
+    height: 60%;
+    padding: 10px;
+    top:200px;
+    position:absolute;
 }
+.route-block{
+    background-color: #DFDFDF;
+    width: 90%;
+    height: 25%;
+    font-family: "inter";
+    font-weight: 800;
+    margin: 15px;
+    border-radius: 10px;
+    padding: 10px;
+}
+
 .r-user-location{
     font-size: 40px;
     font-family: "inter";
     font-weight: 800;
     position: absolute;
-    top:90px
+    top:135px
 }
 .r-content_text{
     font-size: 20px;
     font-family: "inter";
     font-weight: 500;
+    position: absolute;
+    top:90px
 }
 .r-sub_content_text{
     font-size: 15px;
     font-family: "inter";
     color: #7B7B7B;
+    position: absolute;
+    top:115px
 }
 
 .info-box_grey{
@@ -60,24 +77,22 @@ justify-content: center;
 .info-box-right{
     border-radius: 10px;
     padding: 10px;
-    box-shadow: 5px 5px 5px 5px #DFDFDF;
     height: 100px;
     width: 40%;
     float: right;
 }
-.info-box-left{
+.info-box-center{
     border-radius: 10px;
     padding: 10px;
-    box-shadow: 5px 5px 5px 5px #DFDFDF;
     height: 100px;
-    width: 40%;
+    text-align: center;
+    width: 100%;
     float: left;
 }
 
 .info-box-right-l{
     border-radius: 10px;
     padding: 10px;
-    box-shadow: 5px 5px 5px 5px #DFDFDF;
     height: 100px;
     width: 40%;
     float: right;
@@ -85,7 +100,6 @@ justify-content: center;
 .info-box-left-l{
     border-radius: 10px;
     padding: 10px;
-    box-shadow: 5px 5px 5px 5px #DFDFDF;
     height: 100px;
     width: 40%;
     float: left;
