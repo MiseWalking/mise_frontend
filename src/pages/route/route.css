@@ -28,18 +28,17 @@ justify-content: center;
     width: 40%;
     height: 60%;
     padding: 10px;
-    top:200px;
+    top:170px;
+    left: 210px;
     position:absolute;
 }
-.route-block{
-    background-color: #DFDFDF;
-    width: 90%;
-    height: 25%;
+
+img.route-block{
     font-family: "inter";
     font-weight: 800;
-    margin: 15px;
     border-radius: 10px;
-    padding: 10px;
+    display: block;
+    margin: 3px;
 }
 
 .r-user-location{
@@ -47,21 +46,21 @@ justify-content: center;
     font-family: "inter";
     font-weight: 800;
     position: absolute;
-    top:135px
+    top:125px
 }
 .r-content_text{
     font-size: 20px;
     font-family: "inter";
     font-weight: 500;
     position: absolute;
-    top:90px
+    top:80px
 }
 .r-sub_content_text{
     font-size: 15px;
     font-family: "inter";
     color: #7B7B7B;
     position: absolute;
-    top:115px
+    top:105px
 }
 
 .info-box_grey{
@@ -85,7 +84,7 @@ justify-content: center;
     border-radius: 10px;
     padding: 10px;
     height: 100px;
-    text-align: center;
+    /* text-align: center; */
     width: 100%;
     float: left;
 }
@@ -103,4 +102,9 @@ justify-content: center;
     height: 100px;
     width: 40%;
     float: left;
+}
+
+ul {
+    text-decoration: none;
+    font-family: inter;
 }

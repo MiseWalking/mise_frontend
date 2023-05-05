@@ -1,5 +1,4 @@
 import Navigator from "../nav/nav";
-import mainImage from "../../assets/img/main.jpg";
 import "./main.css";
 
 function MainPage() {
@@ -16,7 +15,10 @@ function MainPage() {
           오늘의 서울 평균 미세먼지 농도 00.00%
         </div>
         <div className="image">
-          <img src={mainImage} alt="mainImage" />
+          <img
+            src="https://mswkbucket.s3.ap-northeast-2.amazonaws.com/images/%E1%84%86%E1%85%A6%E1%84%8B%E1%85%B5%E1%86%AB.jpg"
+            alt="mainImage"
+          />
         </div>
         <div className="input__section">
           <form>

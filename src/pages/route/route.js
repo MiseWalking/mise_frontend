@@ -1,8 +1,49 @@
 import Navigator from "../nav/nav";
 import "./route.css";
-import runningImage from "../../assets/img/running2.jpg";
+import * as routes from "./route.json";
+import { useEffect, useState } from "react";
 
+import { apiService } from "./apiService";
 function RoutePage() {
+  const [rainPercent, setRainPercent] = useState();
+  const [rainPerHour, setRainPerHour] = useState();
+  const [humidity, setHumidity] = useState();
+  const [dustPercent, setDust] = useState();
+  const [temperature, setTemperature] = useState();
+  useEffect(() => {
+    getRain();
+    getDust();
+    getTemp();
+  }, []);
+
+  function maps() {
+    const lroutes = routes;
+    const temp = lroutes["광진구"].mapl;
+    let arr = [];
+    for (let route in temp) {
+      const source = temp[route];
+      arr.push(<img src={source} className="route-block" width="280px"></img>);
+    }
+    return arr;
+  }
+  async function getRain() {
+    // rainPercent, humidity, rainPerHour
+    const rainPercentInfo = await apiService.getRain();
+    setRainPercent(rainPercentInfo.rainPercent);
+    setHumidity(rainPercentInfo.humidity);
+    setRainPerHour(rainPercentInfo.rainPerHour);
+  }
+  async function getDust() {
+    //gu, dustPercent
+    const dustInfo = await apiService.getDust();
+    setDust(dustInfo.dustPercent);
+  }
+  async function getTemp() {
+    //temperature
+    const { temperature } = await apiService.getWeather();
+    console.log(temperature);
+    setTemperature(temperature);
+  }
   return (
     <>
       <Navigator></Navigator>
@@ -13,11 +54,7 @@ function RoutePage() {
           <div className="r-sub_content_text">
             오늘의 서울 평균 미세먼지 농도 00.00%
           </div>
-          <div className="routes">
-            <div className="route-block">지도 들어갈 자리</div>
-            <div className="route-block">지도 들어갈 자리</div>
-            <div className="route-block">지도 들어갈 자리</div>
-          </div>
+          <div className="routes">{maps()}</div>
         </div>
         {/* ******************** */}
         <div className="right-content">
@@ -27,11 +64,18 @@ function RoutePage() {
             ~산책로를 통해서 30분 러닝을추천해요!
           </div>
           <div className="info-box">
-            <div className="info-box-center">날씨</div>
+            <div className="info-box-center">날씨 {temperature}°C</div>
           </div>
           <div className="info-box">
-            <div className="info-box-left-l">강수량 습도</div>
-            <div className="info-box-right-l">미세먼지</div>
+            <div className="info-box-left-l">미세먼지 {dustPercent}</div>
+            <div className="info-box-left-l">
+              강수량 습도
+              <ul>
+                <li>비올 확률: {rainPercent}%</li>
+                <li>습도: {humidity}</li>
+                <li>시간당 강수량: {rainPerHour}</li>
+              </ul>
+            </div>
           </div>
         </div>
       </div>
