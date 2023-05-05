@@ -36,6 +36,18 @@ export class apiService {
       const { TMP: temperature } = res.data;
       resJson = { temperature };
     });
+
+    let d = new Date();
+    d.setDate(d.getDate() - 1);
+    const prev = ("0" + d.getDate()).slice(-2);
+    await instance.get("/weather?date=" + year + month + prev).then((res) => {
+      const { TMP: prevTemp } = res.data;
+      const diff = resJson.temperature - prevTemp;
+      let msg;
+      if (diff > 0) msg = "어제보다 " + diff + "° 높아요";
+      else msg = "어제보다 " + -diff + "° 낮아요";
+      resJson.msg = msg;
+    });
     return resJson;
   }
 }
