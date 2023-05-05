@@ -2,6 +2,7 @@ import Navigator from "../nav/nav";
 import "./route.css";
 import * as routes from "./route.json";
 import { useEffect, useState } from "react";
+import Modal from "react-modal";
 
 import { apiService } from "./apiService";
 function RoutePage() {
@@ -10,6 +11,9 @@ function RoutePage() {
   const [humidity, setHumidity] = useState();
   const [dustPercent, setDust] = useState();
   const [temperature, setTemperature] = useState();
+
+  const [isOpen, setOpen] = useState(false);
+  const [nowImage, setImage] = useState();
   useEffect(() => {
     getRain();
     getDust();
@@ -22,7 +26,19 @@ function RoutePage() {
     let arr = [];
     for (let route in temp) {
       const source = temp[route];
-      arr.push(<img src={source} className="route-block" width="280px"></img>);
+      const tempNameForRImage = lroutes["광진구"].mapr[route]; //어느 구의 몇번쨰
+      arr.push(
+        <img
+          src={source}
+          className="route-block"
+          width="280px"
+          alt={tempNameForRImage}
+          onClick={() => {
+            setOpen(true);
+            setImage(tempNameForRImage);
+          }}
+        ></img>
+      );
     }
     return arr;
   }
@@ -55,6 +71,13 @@ function RoutePage() {
             오늘의 서울 평균 미세먼지 농도 00.00%
           </div>
           <div className="routes">{maps()}</div>
+          <Modal isOpen={isOpen} className="modal">
+            <img
+              src={nowImage}
+              width="500px"
+              onClick={() => setOpen(false)}
+            ></img>
+          </Modal>
         </div>
         {/* ******************** */}
         <div className="right-content">

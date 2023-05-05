@@ -41,6 +41,11 @@ img.route-block{
     margin: 3px;
 }
 
+img.route-block:hover{
+  transform: scale(1.02);
+  transition: transform 1s;
+  filter: brightness(90%);}
+
 .r-user-location{
     font-size: 40px;
     font-family: "inter";
@@ -108,3 +113,14 @@ ul {
     text-decoration: none;
     font-family: inter;
 }
+
+.modal {position: absolute;
+  top: calc(50vh - 100px); left: calc(50vw - 200px);
+  background-color: white;
+  display: flex; justify-content: center;
+  align-items: center;
+  border-radius: 10px;
+  width: 400px;
+      box-shadow: 5px 5px 5px 5px #DFDFDF;
+
+  height: 200px;}
