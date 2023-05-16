@@ -3,6 +3,14 @@ import "./route.css";
 import * as routes from "./route.json";
 import { useEffect, useState } from "react";
 import Modal from "react-modal";
+import sunImage from "../../assets/img/sun.png";
+import rainImage from "../../assets/img/rain.png";
+import dustImage from "../../assets/img/dust.png";
+import moonImage from "../../assets/img/moon.png";
+import dust0 from "../../assets/img/dust0.png";
+import dust1 from "../../assets/img/dust1.png";
+import dust2 from "../../assets/img/dust2.png";
+import dust3 from "../../assets/img/dust3.png";
 
 import { apiService } from "./apiService";
 function RoutePage() {
@@ -12,6 +20,8 @@ function RoutePage() {
   const [dustPercent, setDust] = useState();
   const [temperature, setTemperature] = useState();
   const [msg, setMsg] = useState();
+  const [hour, setHour] = useState();
+  const [status, setStatus] = useState();
 
   const [isOpen, setOpen] = useState(false);
   const [nowImage, setImage] = useState();
@@ -19,6 +29,12 @@ function RoutePage() {
     getRain();
     getDust();
     getTemp();
+    const date = new Date();
+    setHour(date.getHours());
+    if (dustPercent < 30) setStatus("좋음");
+    else if (30 <= dustPercent < 80) setStatus("보통");
+    else if (80 <= dustPercent < 150) setStatus("나쁨");
+    else setStatus("나쁨");
   }, []);
 
   function maps() {
@@ -34,7 +50,7 @@ function RoutePage() {
           className="route-block"
           width="280px"
           alt={tempNameForRImage}
-          onClick={() => {
+          onCdivck={() => {
             setOpen(true);
             setImage(tempNameForRImage);
           }}
@@ -76,7 +92,7 @@ function RoutePage() {
             <img
               src={nowImage}
               width="500px"
-              onClick={() => setOpen(false)}
+              onCdivck={() => setOpen(false)}
             ></img>
           </Modal>
         </div>
@@ -88,21 +104,51 @@ function RoutePage() {
             산책로를 통해서 30분 러닝을추천해요!
           </div>
           <div className="info-box">
-            <div className="info-box-center">
-              날씨 {temperature}°C
-              <br></br>
-              {msg}
+            <div className="info-box-center-r">
+              <div className="temperature">
+                {temperature}°{/* <br></br> */}
+              </div>
+              <div className="msg">{msg}</div>
+            </div>
+            <div className="info-box-center-l">
+              {dustPercent}
+              {rainPerHour == "강수없음" && dustPercent > 150 && (
+                <img src={dustImage} style={{ width: "180px" }}></img>
+              )}
+              {hour < 18 && rainPerHour == "강수없음" && dustPercent < 150 && (
+                <img src={sunImage} style={{ width: "180px" }}></img>
+              )}
+              {hour >= 18 && rainPerHour == "강수없음" && dustPercent < 150 && (
+                <img src={moonImage} style={{ width: "180px" }}></img>
+              )}
+              {rainPerHour !== "강수없음" && dustPercent < 150 && (
+                <img src={rainImage} style={{ width: "180px" }}></img>
+              )}
             </div>
           </div>
           <div className="info-box">
-            <div className="info-box-left-l">미세먼지 {dustPercent}</div>
             <div className="info-box-left-l">
-              강수량 습도
-              <ul>
-                <li>비올 확률: {rainPercent}%</li>
-                <li>습도: {humidity}</li>
-                <li>시간당 강수량: {rainPerHour}</li>
-              </ul>
+              <div style={{ fontWeight: "bolder" }}>미세먼지</div>
+              {dustPercent < 30 && <img src={dust0} className="mise_face" />}
+              {30 <= dustPercent && dustPercent < 80 && (
+                <img src={dust1} className="mise_face" />
+              )}
+              {80 <= dustPercent && dustPercent < 150 && (
+                <img src={dust2} className="mise_face" />
+              )}
+              {150 < dustPercent && <img src={dust3} className="mise_face" />}
+              <div style={{ fontSize: "13px" }}>
+                미세먼지는 {dustPercent}로 {status}이에요
+              </div>
+            </div>
+
+            <div className="info-box-left-r">
+              <div style={{ fontWeight: "bolder" }}>강수량/습도</div>
+              <div className="rain_list">
+                <div>비올 확률: {rainPercent}%</div>
+                <div>습도: {humidity}</div>
+                <div>시간당 강수량: {rainPerHour}</div>
+              </div>
             </div>
           </div>
         </div>

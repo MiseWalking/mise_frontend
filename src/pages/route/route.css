@@ -84,14 +84,25 @@ img.route-block:hover{
     height: 100px;
     width: 40%;
     float: right;
+    
 }
-.info-box-center{
+.info-box-center-r{
+    border-radius: 10px;
+    height: 100px;
+    width: 40%;
+    float: left;
+}
+.info-box-center-l{
     border-radius: 10px;
     padding: 10px;
     height: 100px;
-    /* text-align: center; */
-    width: 100%;
-    float: left;
+    width: 40%;
+    float: right;
+}
+.temperature{
+    font-size: 100px;
+    margin-top: 30px;
+    padding-left: 80px ;
 }
 
 .info-box-right-l{
@@ -100,20 +111,53 @@ img.route-block:hover{
     height: 100px;
     width: 40%;
     float: right;
+    margin-top:80px;
 }
 .info-box-left-l{
     border-radius: 10px;
-    padding: 10px;
-    height: 100px;
-    width: 40%;
+    padding-top: 20px;
+    height: 150px;
+    width: 48%;
     float: left;
+    margin-top:80px;
+    margin-right: 3px;
+    box-shadow: 3px 3px 3px 3px #DFDFDF;
+    text-align: center;
+}
+.info-box-left-r{
+    border-radius: 10px;
+    padding-top: 20px;
+    height: 150px;
+    width: 48%;
+    float: right;
+    margin-top:80px;
+    margin-right: 3px;
+    box-shadow: 3px 3px 3px 3px #DFDFDF;
+    text-align: center;
+    font-family: "inter";
 }
 
-ul {
+.rain_list{
+    text-align: left;
+    margin-left:60px;
+    margin-top: 20px;
+}
+.msg{
+    margin-left: 80px;
+    /* width:100px; */
+}
+
+ul li {
     text-decoration: none;
-    font-family: inter;
 }
 
+.mise_face{
+    width: 30%;
+    padding-left:85px;
+    display: block;
+    padding-top: 10px;
+    margin-bottom: 10px;
+}
 .modal {position: absolute;
   top: calc(50vh - 100px); left: calc(50vw - 200px);
   background-color: white;
