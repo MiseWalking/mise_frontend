@@ -1,6 +1,19 @@
 import "./nav.css";
+import LoginModal from "../user/login-modal";
+import JoinModal from "../user/join-modal";
+import { useState } from "react";
 
 function Navigator() {
+  const [joinOpen, setJoinOpen] = useState(false);
+  const [loginOpen, setLoginOpen] = useState(false);
+  const [isLogged, setLogged] = useState(false);
+  function handleJoinOpen() {
+    setJoinOpen(!joinOpen);
+  }
+
+  function handleLoginOpen() {
+    setLoginOpen(!loginOpen);
+  }
   return (
     <div class="nav">
       <nav class="navbar">
@@ -16,13 +29,27 @@ function Navigator() {
         </ul>
 
         <ul class="navbar__icons">
-          <li>login</li>
-          <li>join</li>
+          <li
+            onClick={() => {
+              setJoinOpen(true);
+            }}
+          >
+            login
+          </li>
+          <li
+            onClick={() => {
+              setLoginOpen(true);
+            }}
+          >
+            join
+          </li>
           <li>
             <i class="fab fa-facebook-f"></i>
           </li>
         </ul>
       </nav>
+      <JoinModal open={joinOpen} handleOpen={handleJoinOpen}></JoinModal>
+      <LoginModal open={loginOpen} handleOpen={handleLoginOpen}></LoginModal>
     </div>
   );
 }

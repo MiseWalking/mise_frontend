@@ -40,7 +40,7 @@ a {
     color: white;
 }
 .navbar__logo:hover {
-    background-color: #156900;
+    background-color: #4FB535;
 }
 
 .navbar__logo i {
@@ -120,4 +120,68 @@ a {
     .navbar__icons.active {
         display: flex;
     }
+}
+
+.content{
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    height: 50vh;
+    width: 100vw;
+}
+
+button{
+    background-color: #156900;
+    border: none;
+    border-radius: 50px;
+    color: white;
+    padding: 7px 70px;
+    text-align: center;
+    text-decoration: none;
+    display: inline-block;
+    font-size: 16px;
+    margin: 6px 2px;
+    cursor: pointer;
+    font-family: "inter";
+    font-weight: 750;
+    font-size: 20px;
+}
+
+button:hover{
+    background: #24B600;
+}
+
+@font-face {
+    font-family: "Jalnan";
+    src: url("../../assets/fonts/Jalnan.ttf");
+
+}
+
+@font-face {
+    font-family: "inter";
+    src: url("../../assets/fonts/Inter-SemiBold.ttf");
+}
+
+h1{
+    font-family: "Jalnan";
+    font-size: 40px;
+    color: white;
+}
+
+h1:hover{
+    color:black
+}
+
+h2{
+        font-family: "Jalnan";
+
+}
+
+p{
+    text-align: center;
+    color: white;
+    font-family: "inter";
+    font-weight: 600;
+    font-size: 20px;
 }
