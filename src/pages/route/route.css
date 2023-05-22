@@ -84,7 +84,6 @@ img.route-block:hover{
     height: 100px;
     width: 40%;
     float: right;
-    
 }
 .info-box-center-r{
     border-radius: 10px;
@@ -134,6 +133,7 @@ img.route-block:hover{
     margin-right: 3px;
     box-shadow: 3px 3px 3px 3px #DFDFDF;
     text-align: center;
+    
     font-family: "inter";
 }
 

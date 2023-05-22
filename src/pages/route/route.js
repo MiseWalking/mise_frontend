@@ -50,7 +50,7 @@ function RoutePage() {
           className="route-block"
           width="280px"
           alt={tempNameForRImage}
-          onCdivck={() => {
+          onClick={() => {
             setOpen(true);
             setImage(tempNameForRImage);
           }}
@@ -92,7 +92,7 @@ function RoutePage() {
             <img
               src={nowImage}
               width="500px"
-              onCdivck={() => setOpen(false)}
+              onClick={() => setOpen(false)}
             ></img>
           </Modal>
         </div>
@@ -111,7 +111,6 @@ function RoutePage() {
               <div className="msg">{msg}</div>
             </div>
             <div className="info-box-center-l">
-              {dustPercent}
               {rainPerHour == "강수없음" && dustPercent > 150 && (
                 <img src={dustImage} style={{ width: "180px" }}></img>
               )}
