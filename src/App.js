@@ -1,5 +1,5 @@
 import { BrowserRouter as Router, Route, Routes } from "react-router-dom";
-import { Main, Mise } from "./pages";
+import { Main, Mise, MyPage } from "./pages";
 import "./App.css";
 
 const App = () => {
@@ -9,6 +9,7 @@ const App = () => {
         <Route path="/" element={<Main />} />
         <Route path="/main" element={<Main />} />
         <Route path="/route" element={<Mise />} />
+        <Route path="/mypage" element={<MyPage />} />
       </Routes>
     </Router>
   );

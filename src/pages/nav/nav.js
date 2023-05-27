@@ -7,6 +7,7 @@ function Navigator() {
   const [joinOpen, setJoinOpen] = useState(false);
   const [loginOpen, setLoginOpen] = useState(false);
   const [isLogged, setLogged] = useState(false);
+
   function handleJoinOpen() {
     setJoinOpen(!joinOpen);
   }
@@ -43,6 +44,9 @@ function Navigator() {
           >
             join
           </li>
+          <a href="/mypage">
+            <li>myPage</li>
+          </a>
           <li>
             <i class="fab fa-facebook-f"></i>
           </li>
