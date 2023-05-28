@@ -1,0 +1,47 @@
+.myPage{
+    width: 80%;
+    margin: auto;
+}
+
+.contents{
+    width: 100%;
+    height: 100px;     
+}
+
+.left-cnt{
+    width: 30%;
+    float: left;
+    height: 140px;
+    padding:20px;
+    font-size: 12px;
+    text-align: left;
+    /* background-color: green; */
+}
+
+.right-cnt{
+    width: 65%;
+    float: right;
+    height: 180px;
+    margin-bottom: 10px;
+    /* background-color: blue; */
+}
+
+.profile{
+    float: left;
+}
+
+.profile-info{
+    /* background-color: pink; */
+    float: right;
+    line-height: 20px;
+    margin: 20px;
+}
+
+.circle{
+ width: 150px;
+ height: 150px;
+ border-radius: 50%;
+ font-size: 16px;
+ text-align: center;
+ line-height: 150px;   
+}
