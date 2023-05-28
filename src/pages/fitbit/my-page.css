@@ -45,3 +45,8 @@
  text-align: center;
  line-height: 150px;   
 }
+
+.activity-table{
+    width: 1200px;
+    margin-top: 120px;
+}

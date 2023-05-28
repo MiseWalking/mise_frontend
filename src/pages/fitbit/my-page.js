@@ -50,7 +50,9 @@ function MyPage() {
             <MyResponsiveLine></MyResponsiveLine>
           </div>
         </div>
-        <ActivityTable></ActivityTable>
+        <div className="activity-table">
+          <ActivityTable></ActivityTable>
+        </div>
       </div>
     </>
   );

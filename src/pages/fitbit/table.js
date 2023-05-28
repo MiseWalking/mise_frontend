@@ -28,7 +28,7 @@ function createData(
 }
 
 export default function ActivityTable() {
-  const [logdata, setLogData] = useState({});
+  const [logdata, setLogData] = useState([]);
   let rows2 = [];
   useEffect(() => {
     getUserInfo();
@@ -38,6 +38,7 @@ export default function ActivityTable() {
     const { activities } = await fitbitService.getLogList();
 
     const activity = activities.activities;
+    rows2 = [];
     for (let index in activity) {
       const data = activity[index];
       rows2.push(
@@ -51,7 +52,7 @@ export default function ActivityTable() {
         )
       );
     }
-    setLogData(activities);
+    setLogData(rows2);
   }
 
   return (
@@ -67,7 +68,7 @@ export default function ActivityTable() {
           </TableRow>
         </TableHead>
         <TableBody>
-          {rows2.map((row) => (
+          {logdata.map((row) => (
             <TableRow
               key={row.logId}
               sx={{ "&:last-child td, &:last-child th": { border: 0 } }}
@@ -80,6 +81,7 @@ export default function ActivityTable() {
               <TableCell align="right">{row.calories}</TableCell>
               <TableCell align="right">
                 {row.startTime}
+                <br />
                 {row.lastModified}
               </TableCell>
             </TableRow>
