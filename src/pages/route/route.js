@@ -85,7 +85,7 @@ function RoutePage() {
           <div className="r-user-location">광진구</div>
           <div className="r-content_text">오늘의 미세먼지는 좋음이네요!</div>
           <div className="r-sub_content_text">
-            오늘의 서울 평균 미세먼지 농도 00.00%
+            라즈베리파이가 확인한 오늘의 미세먼지 농도 00.00%
           </div>
           <div className="routes">{maps()}</div>
           <Modal isOpen={isOpen} className="modal">

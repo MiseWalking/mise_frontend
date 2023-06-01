@@ -5,7 +5,7 @@ import Modal from "@mui/material/Modal";
 import Fade from "@mui/material/Fade";
 import TextField from "@mui/material/TextField";
 import { useEffect } from "react";
-// import { UserController } from "../../controller/user-controller";
+import { userService } from "./userService.js";
 
 const style = {
   position: "absolute",
@@ -23,127 +23,132 @@ const style = {
 
 export default function JoinModal(props) {
   let { handleOpen, open } = props;
-  const [userEmail, setEmail] = React.useState();
-  const [userPass, setPass] = React.useState();
-  const [checkPass, setCheckPass] = React.useState();
   const [userName, setUserName] = React.useState();
-  const [authNumber, setNumber] = React.useState();
+  const [userPass, setPass] = React.useState();
+  const [userAge, setUserAge] = React.useState();
+  const [userGender, setUserGender] = React.useState();
+  const [userHeight, setUserHeight] = React.useState();
+  const [userObject, setUserObject] = React.useState();
 
   const [isOpen, setOpen] = React.useState(false);
-  const [approve, setApprove] = React.useState(false);
 
   async function checkIsEqual() {
-    if (userPass === checkPass) {
-      if (!userEmail || !userPass || !userName) {
-        alert("항목을 모두 입력해주세요.");
-        return false;
-      }
+    if (
+      !userName ||
+      !userPass ||
+      !userAge ||
+      !userGender ||
+      !userHeight ||
+      !userObject
+    ) {
+      alert("항목을 모두 입력해주세요.");
+      return false;
     }
+    const resJson = await userService.signUp(
+      userName,
+      userPass,
+      userAge,
+      userGender,
+      userHeight,
+      userObject
+    );
+    console.log(resJson);
+    // if ( === 201) {
+    handleClose();
+    // }
   }
   useEffect(() => {
     setOpen(open);
   }, [open]);
   const handleClose = () => {
-    setApprove(false);
     setUserName("");
-    setEmail("");
+    setUserAge("");
+    setUserGender("");
+    setUserHeight("");
+    setUserObject("");
     setPass("");
-    setCheckPass("");
     setOpen(false);
     handleOpen();
   };
 
-  if (approve === false) {
-    //회원가입
-    return (
-      <div>
-        <Modal
-          aria-labelledby="transition-modal-title"
-          aria-describedby="transition-modal-description"
-          open={isOpen}
-          onClose={handleClose}
-          closeAfterTransition
-          BackdropComponent={Backdrop}
-          BackdropProps={{
-            timeout: 500,
-          }}
-        >
-          <Fade in={open}>
-            <Box sx={style}>
-              <h2 style={{ color: "black" }}>회원 가입</h2>
-              <TextField
-                id="userEmail"
-                label="이메일 주소*"
-                variant="outlined"
-                style={{ width: "70%", marginBottom: "10px" }}
-                onChange={(newValue) => setEmail(newValue.target.value)}
-              />
-              <TextField
-                id="userName"
-                label="이름*"
-                variant="outlined"
-                style={{ width: "70%", marginBottom: "10px" }}
-                onChange={(newValue) => setUserName(newValue.target.value)}
-              />
-              <TextField
-                id="userPass"
-                label="비밀번호*"
-                variant="outlined"
-                style={{ width: "70%", marginBottom: "10px" }}
-                onChange={(newValue) => setPass(newValue.target.value)}
-              />
-              <TextField
-                id="reUserPass"
-                label="비밀번호 확인*"
-                variant="outlined"
-                style={{ width: "70%", marginBottom: "10px" }}
-                onChange={(newValue) => setCheckPass(newValue.target.value)}
-              />
-              <button onClick={() => checkIsEqual()}> 회원 가입 </button>
-            </Box>
-          </Fade>
-        </Modal>
-      </div>
-    );
-  } else {
-    return (
-      <>
-        <Modal
-          aria-labelledby="transition-modal-title"
-          aria-describedby="transition-modal-description"
-          open={isOpen}
-          onClose={handleClose}
-          closeAfterTransition
-          BackdropComponent={Backdrop}
-          BackdropProps={{
-            timeout: 500,
-          }}
-        >
-          <Fade in={open}>
-            <Box sx={style}>
-              <h2 style={{ color: "black" }}>이메일 인증</h2>
-              <div
-                style={{
-                  fontFamily: "inter",
-                  color: "grey",
-                  margin: "2% 4%",
-                }}
-              >
-                이메일로 인증번호가 발송되었습니다. 10분 안에 이메일 인증 번호를
-                입력해주세요.
-              </div>
-              <TextField
-                id="authNumber"
-                label="인증 번호*"
-                variant="outlined"
-                style={{ width: "70%", marginBottom: "10px" }}
-                onChange={(newValue) => setNumber(newValue.target.value)}
-              />
-              <button onClick={() => alert("dd")}>인증 하기</button>
-            </Box>
-          </Fade>
-        </Modal>
-      </>
-    );
-  }
+  return (
+    <div>
+      <Modal
+        aria-labelledby="transition-modal-title"
+        aria-describedby="transition-modal-description"
+        open={isOpen}
+        onClose={handleClose}
+        closeAfterTransition
+        BackdropComponent={Backdrop}
+        BackdropProps={{
+          timeout: 500,
+        }}
+      >
+        <Fade in={open}>
+          <Box sx={style}>
+            <h2 style={{ color: "black" }}>회원 가입</h2>
+            <TextField
+              id="userName"
+              label="이름*"
+              variant="outlined"
+              style={{ width: "70%", marginBottom: "10px" }}
+              onChange={(newValue) => setUserName(newValue.target.value)}
+            />
+            <TextField
+              id="userPass"
+              label="비밀번호*"
+              variant="outlined"
+              style={{ width: "70%", marginBottom: "10px" }}
+              onChange={(newValue) => setPass(newValue.target.value)}
+            />
+            <TextField
+              id="userAge"
+              label="나이"
+              variant="outlined"
+              style={{
+                width: "35%",
+                marginBottom: "10px",
+                marginRight: "3px",
+              }}
+              onChange={(newValue) => setUserAge(newValue.target.value)}
+            />
+            <TextField
+              id="userGender"
+              label="성별"
+              variant="outlined"
+              style={{
+                width: "34%",
+                marginBottom: "10px",
+                marginLeft: "3px",
+              }}
+              onChange={(newValue) => setUserGender(newValue.target.value)}
+            />
+            <TextField
+              id="userHeight"
+              label="키"
+              variant="outlined"
+              style={{
+                width: "35%",
+                marginBottom: "10px",
+                marginRight: "3px",
+              }}
+              onChange={(newValue) => setUserHeight(newValue.target.value)}
+            />
+            <TextField
+              id="userObject"
+              label="목표 운동량"
+              variant="outlined"
+              style={{
+                width: "34%",
+                marginBottom: "10px",
+                marginLeft: "3px",
+              }}
+              onChange={(newValue) => setUserObject(newValue.target.value)}
+            />
+            <button onClick={() => checkIsEqual()}> 회원 가입 </button>
+          </Box>
+        </Fade>
+      </Modal>
+    </div>
+  );
 }

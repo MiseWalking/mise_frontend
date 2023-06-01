@@ -1,12 +1,22 @@
 import "./nav.css";
 import LoginModal from "../user/login-modal";
 import JoinModal from "../user/join-modal";
-import { useState } from "react";
+import { useState, useEffect } from "react";
+import cookie from "react-cookies";
 
 function Navigator() {
   const [joinOpen, setJoinOpen] = useState(false);
   const [loginOpen, setLoginOpen] = useState(false);
   const [isLogged, setLogged] = useState(false);
+
+  useEffect(() => {
+    if (cookie.load("userInfo")) setLogged(true);
+  });
+
+  function handleLogout() {
+    cookie.remove("userInfo");
+    window.location.href = "/";
+  }
 
   function handleJoinOpen() {
     setJoinOpen(!joinOpen);
@@ -29,28 +39,40 @@ function Navigator() {
           <li></li>
         </ul>
 
-        <ul class="navbar__icons">
-          <li
-            onClick={() => {
-              setJoinOpen(true);
-            }}
-          >
-            login
-          </li>
-          <li
-            onClick={() => {
-              setLoginOpen(true);
-            }}
-          >
-            join
-          </li>
-          <a href="/mypage">
-            <li>myPage</li>
-          </a>
-          <li>
-            <i class="fab fa-facebook-f"></i>
-          </li>
-        </ul>
+        {isLogged && (
+          <ul class="navbar__icons">
+            <a href="/mypage">
+              <li>myPage</li>
+            </a>
+            <li
+              onClick={() => {
+                handleLogout();
+              }}
+            >
+              logout
+            </li>
+          </ul>
+        )}
+        {!isLogged && (
+          <ul class="navbar__icons">
+            <li
+              onClick={() => {
+                setLoginOpen(true);
+              }}
+            >
+              login
+            </li>
+            <li>
+              <a
+                onClick={() => {
+                  setJoinOpen(true);
+                }}
+              >
+                join
+              </a>
+            </li>
+          </ul>
+        )}
       </nav>
       <JoinModal open={joinOpen} handleOpen={handleJoinOpen}></JoinModal>
       <LoginModal open={loginOpen} handleOpen={handleLoginOpen}></LoginModal>

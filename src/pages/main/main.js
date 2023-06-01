@@ -4,7 +4,6 @@ import "./main.css";
 function MainPage() {
   return (
     <>
-      {" "}
       <Navigator></Navigator>
       <div className="content">
         <div className="title_text">MISEWALKING</div>
@@ -12,7 +11,7 @@ function MainPage() {
           오늘의 미세먼지 농도를 확인하고 안전한 산책길 떠나요 !
         </div>
         <div className="sub_content_text">
-          오늘의 서울 평균 미세먼지 농도 00.00%
+          라즈베리파이가 확인한 오늘의 미세먼지 농도 00.00%
         </div>
         <div className="image">
           <img

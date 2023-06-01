@@ -5,6 +5,8 @@ import Modal from "@mui/material/Modal";
 import Fade from "@mui/material/Fade";
 import TextField from "@mui/material/TextField";
 import { useEffect } from "react";
+import { userService } from "./userService.js";
+// import { useCookies } from "react-cookie"; // useCookies import
 
 const style = {
   position: "absolute",
@@ -22,24 +24,14 @@ const style = {
 
 export default function LoginModal(props) {
   let { handleOpen, open } = props;
-  const [userEmail, setEmail] = React.useState();
+  const [userName, setUserName] = React.useState();
   const [userPass, setPass] = React.useState();
 
   const [isOpen, setOpen] = React.useState(false);
 
   async function login() {
-    //     const result = await UserController.login(userEmail, userPass);
-    //     if (typeof result === "string") {
-    //       if (result == "User login failed")
-    //         alert("이메일과 비밀번호를 다시 한번 확인해주세요.");
-    //       else alert("이메일 인증을 완료해주세요 ");
-    //       handleClose();
-    //       return false;
-    //     }
-    //     if (result) {
-    //       alert("로그인에 성공했습니다.");
-    //       handleClose();
-    //     } else alert("이메일과 비밀번호를 다시 한번 확인해주세요.");
+    await userService.logIn(userName, userPass);
+    handleClose();
   }
 
   useEffect(() => {
@@ -47,7 +39,7 @@ export default function LoginModal(props) {
   }, [open]);
 
   const handleClose = () => {
-    setEmail("");
+    setUserName("");
     setPass("");
     setOpen(false);
     handleOpen();
@@ -71,11 +63,11 @@ export default function LoginModal(props) {
             <h2 style={{ color: "black" }}>로그인</h2>
             {/* 텍스트필드 */}
             <TextField
-              id="userEmail"
+              id="userName"
               label="이메일 주소*"
               variant="outlined"
               style={{ width: "70%", marginBottom: "10px", marginTop: "2%" }}
-              onChange={(newValue) => setEmail(newValue.target.value)}
+              onChange={(newValue) => setUserName(newValue.target.value)}
             />
             <TextField
               id="userPass"

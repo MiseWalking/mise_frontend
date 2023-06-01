@@ -19,6 +19,7 @@
 }
 
 .right-cnt{
+    /* padding:px; */
     width: 65%;
     float: right;
     height: 180px;
@@ -49,4 +50,27 @@
 .activity-table{
     width: 1200px;
     margin-top: 120px;
+}
+
+.weight-input{
+    width: 160px;
+    margin-right: 20px;
+    margin-left: 3px;
+}
+
+.input-box{
+    padding-left:60px;
+    font-size: 15px;
+    font-weight: 600;
+}
+
+.weight-button{
+    margin:0px;
+    padding:0px;
+    width: 100px;
+    margin-left: 3px;
+    height: 30px;
+    line-height: 30px;
+    display: inline;
+    font-size: 15px;
 }

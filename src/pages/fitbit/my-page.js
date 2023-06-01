@@ -5,6 +5,7 @@ import ActivityTable from "./table";
 import "./my-page.css";
 import ppoyam from "../../assets/img/뽀야미.jpeg";
 import MyResponsiveLine from "./graph";
+import TextField from "@mui/material/TextField";
 
 function MyPage() {
   const [userInfo, setUserInfo] = useState({});
@@ -47,6 +48,11 @@ function MyPage() {
             </div>
           </div>
           <div className="right-cnt">
+            <div className="input-box">
+              몸무게 <input type="text" className="weight-input" />
+              날짜 <input type="Date" className="weight-input" />
+              <button className="weight-button">입력</button>
+            </div>
             <MyResponsiveLine></MyResponsiveLine>
           </div>
         </div>
