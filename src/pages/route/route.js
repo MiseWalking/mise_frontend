@@ -14,6 +14,10 @@ import dust3 from "../../assets/img/dust3.png";
 
 import { apiService } from "./apiService";
 function RoutePage() {
+  const [location, setLocation] = useState(localStorage.getItem("location"));
+  const [routeInfo, setRouteInfo] = useState({});
+  const [tempArr, setArr] = useState([]);
+
   const [rainPercent, setRainPercent] = useState();
   const [rainPerHour, setRainPerHour] = useState();
   const [humidity, setHumidity] = useState();
@@ -29,6 +33,7 @@ function RoutePage() {
     getRain();
     getDust();
     getTemp();
+    getRoute();
     const date = new Date();
     setHour(date.getHours());
     if (dustPercent < 30) setStatus("좋음");
@@ -37,28 +42,6 @@ function RoutePage() {
     else setStatus("나쁨");
   }, []);
 
-  function maps() {
-    const lroutes = routes;
-    const temp = lroutes["광진구"].mapl;
-    let arr = [];
-    for (let route in temp) {
-      const source = temp[route];
-      const tempNameForRImage = lroutes["광진구"].mapr[route]; //어느 구의 몇번쨰
-      arr.push(
-        <img
-          src={source}
-          className="route-block"
-          width="280px"
-          alt={tempNameForRImage}
-          onClick={() => {
-            setOpen(true);
-            setImage(tempNameForRImage);
-          }}
-        ></img>
-      );
-    }
-    return arr;
-  }
   async function getRain() {
     // rainPercent, humidity, rainPerHour
     const rainPercentInfo = await apiService.getRain();
@@ -77,17 +60,68 @@ function RoutePage() {
     setTemperature(temperature);
     setMsg(msg);
   }
+  async function getRoute() {
+    let arr = [];
+    const resJson = await apiService.getRoute(location);
+    setRouteInfo(resJson);
+
+    const lR = resJson.lRoutes,
+      rR = resJson.rRoutes,
+      recommended = resJson.recommendedIndex;
+    for (let index in lR) {
+      const lRoute = lR[index].url;
+      const rRoute = rR[index].url;
+
+      if (index === recommended) {
+        arr.push(
+          <div className="recommended">
+            <img
+              src={lRoute}
+              className="route-block"
+              width="280px"
+              alt={rRoute}
+              onClick={() => {
+                setOpen(true);
+                setImage(rRoute);
+              }}
+            ></img>
+          </div>
+        );
+      } else {
+        arr.push(
+          <div>
+            <img
+              src={lRoute}
+              className="route-block"
+              width="280px"
+              alt={rRoute}
+              onClick={() => {
+                setOpen(true);
+                setImage(rRoute);
+              }}
+            ></img>
+          </div>
+        );
+      }
+    }
+    setArr(arr);
+    return arr;
+  }
+
   return (
     <>
       <Navigator></Navigator>
       <div className="content-wrapper">
         <div className="left-content">
-          <div className="r-user-location">광진구</div>
-          <div className="r-content_text">오늘의 미세먼지는 좋음이네요!</div>
+          <div className="r-user-location">{location}</div>
+          <div className="r-content_text">
+            오늘의 미세먼지는 {routeInfo.flag}이네요!
+          </div>
           <div className="r-sub_content_text">
             라즈베리파이가 확인한 오늘의 미세먼지 농도 00.00%
           </div>
-          <div className="routes">{maps()}</div>
+
+          <div className="routes">{tempArr}</div>
           <Modal isOpen={isOpen} className="modal">
             <img
               src={nowImage}

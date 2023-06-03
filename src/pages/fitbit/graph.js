@@ -12,7 +12,6 @@ function MyGraph() {
 
   async function setUserWeight() {
     let userCookie = await cookie.load("userInfo");
-    setTimeout(() => console.log("after"), 1000);
 
     const { weightRecords } = await userService.getWeightByUserId(
       userCookie.userId
@@ -32,7 +31,6 @@ function MyGraph() {
         data: dataList,
       },
     ];
-    console.log(tempData);
     setWeightData(tempData);
   }
 

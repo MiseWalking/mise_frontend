@@ -52,10 +52,7 @@ export default function JoinModal(props) {
       userHeight,
       userObject
     );
-    console.log(resJson);
-    // if ( === 201) {
     handleClose();
-    // }
   }
   useEffect(() => {
     setOpen(open);

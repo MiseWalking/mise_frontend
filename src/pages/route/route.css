@@ -23,6 +23,13 @@ flex-direction: column;
 align-items: center;
 justify-content: center;
 }
+.recommended{
+    background-color: green;
+    width:295px;
+    padding:5px;
+    border-radius: 10px;
+    border:none;
+}
 
 .routes{
     width: 40%;
@@ -38,7 +45,7 @@ img.route-block{
     font-weight: 800;
     border-radius: 10px;
     display: block;
-    margin: 3px;
+    margin: 8px;
 }
 
 img.route-block:hover{

@@ -1,7 +1,22 @@
 import Navigator from "../nav/nav";
 import "./main.css";
+import Search from "./serch.js";
+import { useState, useEffect } from "react";
 
 function MainPage() {
+  const initialDatas = ["마포구", "동대문구", "광진구"];
+  const [location, setLocation] = useState("");
+  const [input, setInput] = useState("");
+  const [datas, setDatas] = useState(initialDatas);
+
+  const onChange = (e) => {
+    const searchWords = (datas, inputWord) => {
+      return datas.filter((word) => !word.search(inputWord));
+    };
+    setInput(e.target.value);
+    setDatas(searchWords(initialDatas, e.target.value));
+  };
+
   return (
     <>
       <Navigator></Navigator>
@@ -26,12 +41,21 @@ function MainPage() {
                 type="text"
                 className="item"
                 autoFocus={true}
+                onChange={(newValue) => setLocation(newValue.target.value)}
+                value={location}
                 placeholder="산책하고자하는 위치를 알려주세요!"
               />
             </div>
             <div>
               <button className="input__button">
-                <a href="/route">미세먼지 피해 산책로 찾기</a>
+                <a
+                  href="/route"
+                  onClick={() => {
+                    localStorage.setItem("location", location);
+                  }}
+                >
+                  미세먼지 피해 산책로 찾기
+                </a>
               </button>
             </div>
           </form>

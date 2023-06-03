@@ -79,8 +79,6 @@ export class userService {
 
   static async getWeightByUserId(userId) {
     let resJson = {};
-
-    console.log(userId);
     if (userId == undefined) {
       let userCookie = await cookie.load("userInfo");
       userId = userCookie.userId;

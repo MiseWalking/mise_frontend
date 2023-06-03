@@ -1,6 +1,6 @@
 /* eslint-disable */
 import instance from "../../config/axios-config";
-
+import * as guList from "./gu.json";
 export class apiService {
   static async getRain() {
     const today = new Date();
@@ -35,7 +35,6 @@ export class apiService {
     await instance
       .get("/data/weather?date=" + year + month + day)
       .then((res) => {
-        console.log(res);
         const { TMP: temperature } = res.data;
         resJson = { temperature };
       });
@@ -52,6 +51,37 @@ export class apiService {
         if (diff > 0) msg = "어제보다 " + diff + "° 높아요";
         else msg = "어제보다 " + -diff + "° 낮아요";
         resJson.msg = msg;
+      });
+    return resJson;
+  }
+
+  static async getRoute(locationName) {
+    const today = new Date();
+    const year = today.getFullYear();
+    const month = ("0" + (today.getMonth() + 1)).slice(-2);
+    const day = ("0" + today.getDate()).slice(-2);
+
+    const locationInfo = guList[locationName];
+    const reqJson = {
+      gu: locationInfo.code,
+      imageId: locationInfo.index,
+      date: year + month + day,
+    };
+    let recommendedIndex = 0;
+    let resJson = {};
+
+    await instance
+      .get("/route/" + locationInfo.index, { params: reqJson })
+      .then((res) => {
+        const { flag, routes } = res.data;
+        const lRoutes = routes.slice(0, 3);
+        const rRoutes = routes.slice(3, 6);
+        for (let i in routes)
+          if (routes[i].recommended == true) {
+            recommendedIndex = i;
+            break;
+          }
+        resJson = { flag, lRoutes, rRoutes, recommendedIndex };
       });
     return resJson;
   }
