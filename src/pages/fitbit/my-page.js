@@ -3,44 +3,54 @@ import { useEffect, useState } from "react";
 import { fitbitService } from "./fitbitService.js";
 import ActivityTable from "./table";
 import "./my-page.css";
-import ppoyam from "../../assets/img/뽀야미.jpeg";
-import MyResponsiveLine from "./graph";
+import unknown from "../../assets/img/unknown.jpeg";
+import MyGraph from "./graph";
 import TextField from "@mui/material/TextField";
+import { userService } from "../user/userService";
+import cookie from "react-cookies";
 
 function MyPage() {
   const [userInfo, setUserInfo] = useState({});
-  const [activityData, setActivityData] = useState({});
-  const [logdata, setLogData] = useState({});
+  const [weightInfo, setWeightInfo] = useState({});
+  const [weightInput, setWeightInput] = useState(0);
+  const [dateInput, setDateInput] = useState();
+
+  const saveWeight = (event) => {
+    setWeightInput(event.target.value);
+  };
+  const saveDate = (event) => {
+    setDateInput(event.target.value);
+  };
 
   useEffect(() => {
     getUserInfo();
+    setUserWeight();
   }, []);
 
   async function getUserInfo() {
-    const { user } = await fitbitService.getUserInfo();
-    const { activities } = await fitbitService.getDailyData();
-    const { activities: logData } = await fitbitService.getLogList();
-
+    let userCookie = await cookie.load("userInfo");
+    const username = userCookie.username;
+    const { user } = await userService.getUserInfo(username);
     setUserInfo(user);
-    setActivityData(activities);
-    setLogData(logData);
+  }
+  async function setUserWeight() {
+    const resJson = await userService.getWeightByUserId(userInfo.id);
   }
 
   return (
     <>
       <Navigator></Navigator>
       <div className="myPage">
-        {/* <div className="profile">Activities</div> */}
         <br />
         <br />
         <div className="contents">
           <div className="left-cnt">
             <div className="profile">
-              <img className="circle" src={ppoyam}></img>
+              <img className="circle" src={unknown}></img>
             </div>
             <div className="profile-info">
-              {userInfo.dateOfBirth}({userInfo.age})<br />
-              {userInfo.displayName}
+              {userInfo.username}({userInfo.gender},{userInfo.age})<br />
+              user Height : {userInfo.height}
               <br />
               Konkuk Univ Seoul
               <br /> South Korea
@@ -49,11 +59,34 @@ function MyPage() {
           </div>
           <div className="right-cnt">
             <div className="input-box">
-              몸무게 <input type="text" className="weight-input" />
-              날짜 <input type="Date" className="weight-input" />
-              <button className="weight-button">입력</button>
+              몸무게{" "}
+              <input
+                type="text"
+                className="weight-input"
+                onChange={saveWeight}
+                value={weightInput}
+              />
+              날짜
+              <input
+                type="Date"
+                className="weight-input"
+                onChange={saveDate}
+                value={dateInput}
+              />
+              <button
+                className="weight-button"
+                onClick={async () => {
+                  await userService.createWeight(
+                    userInfo.id,
+                    weightInput,
+                    dateInput
+                  );
+                }}
+              >
+                입력
+              </button>
             </div>
-            <MyResponsiveLine></MyResponsiveLine>
+            <MyGraph></MyGraph>
           </div>
         </div>
         <div className="activity-table">
