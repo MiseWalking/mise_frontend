@@ -21,6 +21,7 @@
     "react-modal": "^3.16.1",
     "react-router-dom": "^6.10.0",
     "react-scripts": "5.0.1",
+    "socket.io-client": "^2.4.0",
     "styled-components": "^5.3.11",
     "web-vitals": "^2.1.4"
   },
@@ -48,5 +49,5 @@
       "last 1 safari version"
     ]
   },
-  "proxy": "http://localhost:5000"
+  "proxy": "https://misewalking2023.kro.kr"
 }

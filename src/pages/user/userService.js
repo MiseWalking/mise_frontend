@@ -1,9 +1,6 @@
 /* eslint-disable */
-import instance from "../../config/axios-config";
-// import { cookie } from "react-cookie";
-
+import { instance, lambdaInstance } from "../../config/axios-config";
 import cookie from "react-cookies";
-// const cookie = new cookie();
 
 export class userService {
   static async signUp(username, password, age, gender, height, objective) {
@@ -15,7 +12,7 @@ export class userService {
       height,
       objective,
     };
-    await instance.post("/user/signup", reqJson).then((res) => {
+    await lambdaInstance.post("/user/signup", reqJson).then((res) => {
       const resJson = res.data;
       if (res.status == 201) alert("회원가입 완료");
       return resJson;
@@ -26,7 +23,7 @@ export class userService {
       username,
       password,
     };
-    await instance.post("/user/login", reqJson).then(async (res) => {
+    await lambdaInstance.post("/user/login", reqJson).then(async (res) => {
       const resJson = res.data;
       await this.setUserCookie(username);
       if (res.status == 200) {
@@ -41,7 +38,7 @@ export class userService {
 
   static async setUserCookie(username) {
     let userId = "";
-    await instance.get("user/" + username).then((res) => {
+    await lambdaInstance.get("user/" + username).then((res) => {
       const { user } = res.data;
       userId = user.id;
     });
@@ -58,7 +55,7 @@ export class userService {
 
   static async getUserInfo(username) {
     let resJson = {};
-    await instance.get("user/" + username).then((res) => {
+    await lambdaInstance.get("user/" + username).then((res) => {
       resJson = res.data;
     });
     return resJson;
@@ -70,7 +67,7 @@ export class userService {
       weight,
       date,
     };
-    await instance.post("/weight", reqJson).then((res) => {
+    await lambdaInstance.post("/weight", reqJson).then((res) => {
       const resJson = res.data;
       if (res.status == 201) alert("입력 성공");
       else alert("입력값 재확인 요망");
@@ -83,7 +80,7 @@ export class userService {
       let userCookie = await cookie.load("userInfo");
       userId = userCookie.userId;
     }
-    await instance.get("weight/" + userId).then((res) => {
+    await lambdaInstance.get("weight/" + userId).then((res) => {
       resJson = res.data;
     });
     return resJson;

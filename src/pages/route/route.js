@@ -1,6 +1,5 @@
 import Navigator from "../nav/nav";
 import "./route.css";
-import * as routes from "./route.json";
 import { useEffect, useState } from "react";
 import Modal from "react-modal";
 import sunImage from "../../assets/img/sun.png";

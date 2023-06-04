@@ -64,7 +64,7 @@ export default function LoginModal(props) {
             {/* 텍스트필드 */}
             <TextField
               id="userName"
-              label="이메일 주소*"
+              label="이름*"
               variant="outlined"
               style={{ width: "70%", marginBottom: "10px", marginTop: "2%" }}
               onChange={(newValue) => setUserName(newValue.target.value)}

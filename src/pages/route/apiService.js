@@ -1,5 +1,6 @@
 /* eslint-disable */
-import instance from "../../config/axios-config";
+import { lambdaInstance, instance } from "../../config/axios-config";
+
 import * as guList from "./gu.json";
 export class apiService {
   static async getRain() {
@@ -9,16 +10,18 @@ export class apiService {
     const day = ("0" + today.getDate()).slice(-2);
     let resJson = {};
 
-    await instance.get("/data/gang?date=" + year + month + day).then((res) => {
-      const { POP: rainPercent, REH: humidity, PCP: rainPerHour } = res.data;
-      resJson = { rainPercent, humidity, rainPerHour };
-    });
+    await lambdaInstance
+      .get("/data/gang?date=" + year + month + day)
+      .then((res) => {
+        const { POP: rainPercent, REH: humidity, PCP: rainPerHour } = res.data;
+        resJson = { rainPercent, humidity, rainPerHour };
+      });
     return resJson;
   }
 
   static async getDust() {
     let resJson = {};
-    await instance.get("/data/mise?gu=111141").then((res) => {
+    await lambdaInstance.get("/data/mise?gu=111141").then((res) => {
       const { gu: location, pm10: dustPercent } = res.data;
       resJson = { location, dustPercent };
     });
@@ -32,7 +35,7 @@ export class apiService {
     const day = ("0" + today.getDate()).slice(-2);
     let resJson = {};
 
-    await instance
+    await lambdaInstance
       .get("/data/weather?date=" + year + month + day)
       .then((res) => {
         const { TMP: temperature } = res.data;
@@ -70,7 +73,7 @@ export class apiService {
     let recommendedIndex = 0;
     let resJson = {};
 
-    await instance
+    await lambdaInstance
       .get("/route/" + locationInfo.index, { params: reqJson })
       .then((res) => {
         const { flag, routes } = res.data;

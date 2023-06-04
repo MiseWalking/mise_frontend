@@ -1,5 +1,5 @@
 /* eslint-disable */
-import instance from "../../config/axios-config";
+import { instance } from "../../config/axios-config";
 
 export class fitbitService {
   static async getDailyData() {

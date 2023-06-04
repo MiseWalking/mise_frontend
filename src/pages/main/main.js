@@ -1,21 +1,40 @@
 import Navigator from "../nav/nav";
 import "./main.css";
-import Search from "./serch.js";
 import { useState, useEffect } from "react";
+import { apiService } from "../route/apiService";
+import io from "socket.io-client";
 
 function MainPage() {
-  const initialDatas = ["마포구", "동대문구", "광진구"];
   const [location, setLocation] = useState("");
-  const [input, setInput] = useState("");
-  const [datas, setDatas] = useState(initialDatas);
+  const [msg, setMsg] = useState("none");
 
-  const onChange = (e) => {
-    const searchWords = (datas, inputWord) => {
-      return datas.filter((word) => !word.search(inputWord));
-    };
-    setInput(e.target.value);
-    setDatas(searchWords(initialDatas, e.target.value));
-  };
+  async function connectSocket() {
+    const socket = await io.connect("http://16.16.208.105:5000", {
+      transports: ["websocket"],
+      secure: true,
+      reconnection: false,
+      rejectUnauthorized: false,
+    });
+
+    socket.on("connect", function () {
+      console.log("Connected to socket");
+    });
+
+    socket.on("deviceConnect", function (data) {
+      console.log(data);
+      // setMsg(data);
+    });
+
+    socket.on("message", function (data) {
+      console.log("!!!!!메시지!!!!!", data);
+      localStorage.setItem("iotMsg", data);
+      setMsg(data);
+    });
+  }
+
+  useEffect(() => {
+    connectSocket();
+  }, []);
 
   return (
     <>
@@ -26,7 +45,7 @@ function MainPage() {
           오늘의 미세먼지 농도를 확인하고 안전한 산책길 떠나요 !
         </div>
         <div className="sub_content_text">
-          라즈베리파이가 확인한 오늘의 미세먼지 농도 00.00%
+          라즈베리파이가 확인한 오늘의 미세먼지 농도 {msg}
         </div>
         <div className="image">
           <img
