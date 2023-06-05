@@ -6,10 +6,10 @@ import io from "socket.io-client";
 
 function MainPage() {
   const [location, setLocation] = useState("");
-  const [msg, setMsg] = useState("none");
+  const [msg, setMsg] = useState("PM2.5 : 107, PM10: 147");
 
   async function connectSocket() {
-    const socket = await io.connect("http://16.16.208.105:5000", {
+    const socket = await io.connect("http://localhost:5000", {
       transports: ["websocket"],
       secure: true,
       reconnection: false,

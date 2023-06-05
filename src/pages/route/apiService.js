@@ -7,7 +7,7 @@ export class apiService {
     const today = new Date();
     const year = today.getFullYear();
     const month = ("0" + (today.getMonth() + 1)).slice(-2);
-    const day = ("0" + today.getDate()).slice(-2);
+    const day = ("0" + (today.getDate() - 1)).slice(-2);
     let resJson = {};
 
     await lambdaInstance
@@ -32,7 +32,7 @@ export class apiService {
     const today = new Date();
     const year = today.getFullYear();
     const month = ("0" + (today.getMonth() + 1)).slice(-2);
-    const day = ("0" + today.getDate()).slice(-2);
+    const day = ("0" + (today.getDate() - 1)).slice(-2);
     let resJson = {};
 
     await lambdaInstance
@@ -62,7 +62,7 @@ export class apiService {
     const today = new Date();
     const year = today.getFullYear();
     const month = ("0" + (today.getMonth() + 1)).slice(-2);
-    const day = ("0" + today.getDate()).slice(-2);
+    const day = ("0" + (today.getDate() - 1)).slice(-2);
 
     const locationInfo = guList[locationName];
     const reqJson = {

@@ -35,7 +35,7 @@ justify-content: center;
     width: 40%;
     height: 60%;
     padding: 10px;
-    top:170px;
+    top:140px;
     left: 210px;
     position:absolute;
 }
@@ -58,7 +58,7 @@ img.route-block:hover{
     font-family: "inter";
     font-weight: 800;
     position: absolute;
-    top:125px
+    top:105px
 }
 .r-content_text{
     font-size: 20px;

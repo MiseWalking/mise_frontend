@@ -116,9 +116,7 @@ function RoutePage() {
           <div className="r-content_text">
             오늘의 미세먼지는 {routeInfo.flag}이네요!
           </div>
-          <div className="r-sub_content_text">
-            라즈베리파이가 확인한 오늘의 미세먼지 농도 00.00%
-          </div>
+          {/* <div className="r-sub_content_text"></div> */}
 
           <div className="routes">{tempArr}</div>
           <Modal isOpen={isOpen} className="modal">
